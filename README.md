@@ -1,4 +1,4 @@
-bp
+BP
 ==
 
 A boilerplate generator
