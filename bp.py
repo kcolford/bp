@@ -61,6 +61,7 @@ class HookedRegex(object):
     def output(self, match):
         return match.expand(self.template.format(self.regex.group(2)))
 
+
 class Extractor(object):
     """A class that extracts the comments from source code text.
 
