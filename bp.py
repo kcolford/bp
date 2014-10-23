@@ -21,7 +21,6 @@
 
 """
 
-from abc import ABCMeta, abstractmethod
 import argparse
 import itertools
 import re
@@ -183,28 +182,16 @@ class Extractor(object):
         return text
 
 
-class GenDummy(Extractor):
-    """A dummy class whose gen method doesn't alter the class at all.
-    
-    """
-
-    def gen(self, text):
-        """Dummy gen method."""
-        
-        return text
-
-
-class Gen(GenDummy, Extractor):
+class Gen(Extractor):
     """The generator class for boilerplate code.
 
     """
 
-    __metaclass__ = ABCMeta
-
-    @abstractmethod
     def matchComment(self, comm):
-        """Return a match object according to what comments this generator
+        """Return a HookedRegex according to what comments this generator
         looks at.
+
+        Overload this method to match different comments.
 
         """
         
