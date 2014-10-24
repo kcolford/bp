@@ -4,7 +4,7 @@ import re
 
 class Shell(Extractor):
 
-    """Handle Python comments.
+    """Handle shell style comments.
 
     """
 
@@ -16,7 +16,7 @@ class Shell(Extractor):
 
 class Lisp(Extractor):
 
-    """Extract Racket comments from source code.
+    """Handle lisp style comments.
 
     """
 
