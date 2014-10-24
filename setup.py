@@ -10,5 +10,5 @@ setup(name='Boil',
       maintainer_email='colfordk@gmail.com',
       url='https://github.com/kcolford/bp',
       license='GPLv3',
-      packages=['boil'],
+      packages=['boil', 'boil.core'],
       scripts=['bp.py'])
