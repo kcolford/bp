@@ -1,6 +1,6 @@
-Boil
+txt2boil
 
-Copyright (c) 2014 Kieran Colford <colfordk@gmail.com>
+Copyright (C) 2014 Kieran Colford
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
