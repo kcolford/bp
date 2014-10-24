@@ -27,11 +27,10 @@ class RacketConstantGen(Gen):
 
     """
 
-    @cmi.nonNoneCMI(RacketConstantGen)
+    @cmi.nonNoneCMI(lambda: RacketConstantGen)
     def matchComment(self, comm):
         return HookedRegex(r'Constant Gen: (\S+) (.*)\n',
-                            '(define \g<0> {})\n',
-                            comm)
+                            '(define \g<0> {})\n', comm)
 
 
 class Racket(RacketConstantGen, comments.Lisp, LineCodeGen):
