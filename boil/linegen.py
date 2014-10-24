@@ -1,4 +1,5 @@
 from core import *
+import cmi
 
 
 class LineCodeGen(Gen):
@@ -7,8 +8,7 @@ class LineCodeGen(Gen):
 
     """
 
+    @cmi.nonNoneCMI(LineCodeGen)
     def matchComment(self, comm):
-        return (HookedRegex(r'Line Gen:\n(.+)\n(.+)\n',
-                            '{}\n',
-                            comm) or
-                super(LineCodeGen, self).matchComment(comm))
+        return HookedRegex(r'Line Gen:\n(.+)\n(.+)\n',
+                            '{}\n', comm)

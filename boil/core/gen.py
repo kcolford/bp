@@ -75,12 +75,12 @@ class Gen(_Gen):
         For example, if one were to write a Foo generator then it
         would look something like this:
 
-        from boil.core import *
-        import boil.coop
+        from boil.core import Gen, HookedRegex
+        import boil.cmi
 
         class Foo(Gen):
 
-            @coop.nonNoneCMI(Foo)
+            @cmi.nonNoneCMI(Foo)
             def matchComment(self, comm):
                 return HookedRegex(...)
 

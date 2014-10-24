@@ -1,14 +1,15 @@
-"""Cooprative Multiple Inheritance made easy.
+"""Cooprative Multiple Inheritance (CMI) made easy.
 
 This module provides a function descriptor that transforms an ordinary
-overloaded function into a function that behaves with the style of
-Cooperative Multiple Inheritance (CMI) so as to mimic the Chain of
-Resposibility design pattern.
+overloaded function into a function that is compatible with CMI.  This
+allows us to mimic the Chain of Resposibility design pattern entirely
+using CMI.
 
-There are two API's: one is the generic descripter that takes a binary
-operation and uses it to merge two answers together.  The other is two
-functions: one which locates the first non-None object and returns it,
-and the other which finds the minimum element of all the posibilities.
+There are two API's.  One is the generic descripter that takes a
+binary operation and uses it to merge two answers together.  The other
+is two functions: one which locates the first non-None object and
+returns it, and the other which finds the minimum element of all the
+posibilities.
 
 """
 

@@ -1,3 +1,12 @@
+"""Frontend interface to the boil library.
+
+Each class is designed for a particular language and inherits its
+features from different parent classes.
+
+"""
+
+
+import cmi
 from core import *
 from linegen import LineCodeGen
 import comments
@@ -18,11 +27,11 @@ class RacketConstantGen(Gen):
 
     """
 
+    @cmi.nonNoneCMI(RacketConstantGen)
     def matchComment(self, comm):
-        return (HookedRegex(r'Constant Gen: (\S+) (.*)\n',
+        return HookedRegex(r'Constant Gen: (\S+) (.*)\n',
                             '(define \g<0> {})\n',
-                            comm) or
-                super(RacketConstantGen, self).matchComment(comm))
+                            comm)
 
 
 class Racket(RacketConstantGen, comments.Lisp, LineCodeGen):
