@@ -39,7 +39,7 @@ def update(text):
 
 def readFrom(handle):
     """Read text from handle depending on what type it is.
-    
+
     If it is a string then open it as a file.  Otherwise, treat it as
     a file-like object and call read on it.
 

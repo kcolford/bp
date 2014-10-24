@@ -2,6 +2,7 @@ from core import *
 from linegen import LineCodeGen
 import comments
 
+
 class Python(comments.Shell, LineCodeGen):
 
     """Update all code found in a Python source file.
@@ -9,6 +10,7 @@ class Python(comments.Shell, LineCodeGen):
     """
 
     pass
+
 
 class RacketConstantGen(Gen):
 

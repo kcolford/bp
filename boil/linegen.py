@@ -1,5 +1,6 @@
 from core import *
 
+
 class LineCodeGen(Gen):
 
     """Generate code on a line by line basis.
