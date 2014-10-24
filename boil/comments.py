@@ -1,4 +1,5 @@
 from core import *
+import re
 
 
 class Shell(Extractor):
