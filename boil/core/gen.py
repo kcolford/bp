@@ -8,21 +8,7 @@ from extractor import Extractor
 import re
 
 
-class Gen(Extractor):
-
-    """The generator class for boilerplate code.
-
-    """
-
-    def matchComment(self, comm):
-        """Return a HookedRegex according to what comments this generator
-        looks at.
-
-        Overload this method to match different comments.
-
-        """
-
-        pass
+class _Gen(Extractor):
 
     def collectTriggers(self, rgx, code):
         """Return a dictionary of triggers and their corresponding matches
@@ -49,10 +35,6 @@ class Gen(Extractor):
 
         """
 
-        assert type(self) is not Gen
-        # if type(self) is Gen:
-        #     return text
-
         for cc in self.chunkComment(text, start):
             c = self.extractChunkContent(cc)
             cc = ''.join(cc)
@@ -73,3 +55,38 @@ class Gen(Extractor):
 
                 return self.gen(text, e + len(new))
         return text
+
+
+class Gen(_Gen):
+    
+    """The generator class for boilerplate code.
+
+    """
+
+    def matchComment(self, comm):
+        """Return a HookedRegex according to what comments this generator
+        looks at.
+
+        Overload this method to match different comments.  A standard
+        overload should make use of the coop.notNoneCMI function
+        decorator so that multiple different comments can be processes
+        with one class.
+        
+        For example, if one were to write a Foo generator then it
+        would look something like this:
+
+        from boil.core import *
+        import boil.coop
+
+        class Foo(Gen):
+
+            @coop.nonNoneCMI(Foo)
+            def matchComment(self, comm):
+                return HookedRegex(...)
+
+        """
+
+        pass
+
+
+__all__ = ['Gen']

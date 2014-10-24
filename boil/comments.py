@@ -7,7 +7,7 @@ class Shell(Extractor):
 
     """
 
-    __regex = re.compile(r'^# (.*\n)', re.M)
+    __regex = re.compile(r'^#+ (.*\n)', re.M)
 
     def lineComment(self, text, start):
         return self.__regex.search(text, start)
@@ -19,7 +19,7 @@ class Lisp(Extractor):
 
     """
 
-    __regex = re.compile(r'^;; (.*\n)', re.M)
+    __regex = re.compile(r'^;+ (.*\n)', re.M)
 
     def lineComment(self, text, start):
         return self.__regex.search(text, start)
