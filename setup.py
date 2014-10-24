@@ -2,7 +2,7 @@
 
 from distutils.core import setup
 setup(name='Boil',
-      version='0.1.1a2',
+      version='alpha',
       description='A configurable boilerplate generator.',
       author='Kieran Colford',
       author_email='colfordk@gmail.com',

@@ -1,5 +1,4 @@
-from core.extractor import Extractor
-import re
+from core import *
 
 
 class Shell(Extractor):

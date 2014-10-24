@@ -1,4 +1,4 @@
-from core.gen import Gen
+from core import *
 from linegen import LineCodeGen
 import comments
 

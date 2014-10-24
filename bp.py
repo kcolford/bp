@@ -17,14 +17,16 @@
 # <http://www.gnu.org/licenses/>.
 
 
-"""A boilerplate generator.
+"""Update the boilerplate in source code.
+
+We do so according to a series of marker comments found through
+regexs.
 
 """
 
 import argparse
 import sys
-from boil.racket import Racket
-import boil.python
+from boil.langs import Racket
 
 
 def update(text):
@@ -36,9 +38,10 @@ def update(text):
 
 
 def readFrom(handle):
-    """Read text from handle depending on what type it is.  If it is a
-    string then open it as a file.  Otherwise, treat it as a file-like
-    object and call read on it.
+    """Read text from handle depending on what type it is.
+    
+    If it is a string then open it as a file.  Otherwise, treat it as
+    a file-like object and call read on it.
 
     """
 
@@ -53,9 +56,10 @@ def readFrom(handle):
 
 
 def writeInto(handle, text):
-    """Write text to handle depending on what type it is.  If it is a
-    string then open it as a file.  Otherwise, treat it as a file-like
-    object and call write on it.
+    """Write text to handle depending on what type it is.
+
+    If it is a string then open it as a file.  Otherwise, treat it as
+    a file-like object and call write on it.
 
     """
 
@@ -88,10 +92,7 @@ def updateFile(fname):
 
 
 def main():
-    """Update the boilerplate in source code according to a series of
-    marker comments.
-
-    """
+    """The main method."""
 
     parser = argparse.ArgumentParser(description=description,
                                      epilog=epilog)
@@ -114,7 +115,7 @@ def main():
     else:
         parser.print_help()
 
-description = __doc__ + main.__doc__
+description = __doc__
 epilog = ''
 
 if __name__ == '__main__':
