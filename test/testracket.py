@@ -1,7 +1,9 @@
 from testgen import TestGen
 from boil.racket import Racket
 
+
 class RacketConstantTester(TestGen, Racket):
+
     """Test the boilerplate generation in Racket code.
 
     """
@@ -40,16 +42,15 @@ r5/7
 
     def test_extractmany(self):
         """Test the extraction of many comments.
-    
+
         """
-        
+
         c = self.comments(r"""
 ;; foo
 
 ;; bar
 """)
         self.assertEqual(c, ['foo\n', 'bar\n'])
-
 
     def test_commentextraction(self):
         """Test the extraction of comments.
@@ -58,9 +59,9 @@ r5/7
 
         c = self.comments(self.basicAnswer)
         self.assertEqual(
-            c, [r"Constant Gen: r(\d+)/(\d+) (make-my-rational \1 \2)" + 
+            c, [r"Constant Gen: r(\d+)/(\d+) (make-my-rational \1 \2)" +
                 "\n"])
-    
+
     lineGenTest = r"""
 ;; Line Gen:
 ;; r(\d+)/(\d+)

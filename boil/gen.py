@@ -9,6 +9,7 @@ import re
 
 
 class Gen(Extractor):
+
     """The generator class for boilerplate code.
 
     """
@@ -20,7 +21,7 @@ class Gen(Extractor):
         Overload this method to match different comments.
 
         """
-        
+
         pass
 
     def collectTriggers(self, rgx, code):
@@ -29,15 +30,15 @@ class Gen(Extractor):
 
         """
 
-        return { m.group(0):m for m in re.finditer(rgx, code) }
+        return {m.group(0): m for m in re.finditer(rgx, code)}
 
     def genOutputs(self, code, match):
         """Return a list out template outputs based on the triggers found in
         the code and the template they create.
 
         """
-        
-        out = sorted((k, match.output(m)) for (k, m) in 
+
+        out = sorted((k, match.output(m)) for (k, m) in
                      self.collectTriggers(match.group(1), code).items())
         out = list(map(lambda a: a[1], out))
         return out
@@ -51,7 +52,7 @@ class Gen(Extractor):
         assert type(self) is not Gen
         # if type(self) is Gen:
         #     return text
-        
+
         for cc in self.chunkComment(text, start):
             c = self.extractChunkContent(cc)
             cc = ''.join(cc)
@@ -60,7 +61,7 @@ class Gen(Extractor):
             e = idx + len(cc)
             if m:
                 assert text[idx:e] == cc
-                
+
                 try:
                     end = text.index('\n\n', e - 1) + 1
                 except ValueError:
@@ -72,4 +73,3 @@ class Gen(Extractor):
 
                 return self.gen(text, e + len(new))
         return text
-

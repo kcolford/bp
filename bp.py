@@ -34,6 +34,7 @@ def update(text):
 
     return Racket().gen(text)
 
+
 def readFrom(handle):
     """Read text from handle depending on what type it is.  If it is a
     string then open it as a file.  Otherwise, treat it as a file-like
@@ -50,6 +51,7 @@ def readFrom(handle):
     else:
         return handle.read()
 
+
 def writeInto(handle, text):
     """Write text to handle depending on what type it is.  If it is a
     string then open it as a file.  Otherwise, treat it as a file-like
@@ -60,11 +62,12 @@ def writeInto(handle, text):
     if isinstance(handle, str):
         if handle == '-':
             sys.stdout.write(text)
-        else: 
+        else:
             with open(handle, 'w') as f:
                 f.write(text)
     else:
         handle.write(text)
+
 
 def updateStream(fin, fout):
     """Update a stream from fin and put the output in fout.
@@ -75,12 +78,14 @@ def updateStream(fin, fout):
     text = update(text)
     writeInto(fout, text)
 
+
 def updateFile(fname):
     """Update a file in place.
 
     """
 
-    updateStream(fname, fname)    
+    updateStream(fname, fname)
+
 
 def main():
     """Update the boilerplate in source code according to a series of
@@ -114,4 +119,3 @@ epilog = ''
 
 if __name__ == '__main__':
     main()
-

@@ -4,6 +4,7 @@ import re
 
 
 class PythonComments(Extractor):
+
     """Handle Python comments.
 
     """
@@ -15,6 +16,7 @@ class PythonComments(Extractor):
 
 
 class Python(PythonComments, LineCodeGen):
+
     """Update all code found in a Python source file.
 
     """

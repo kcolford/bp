@@ -6,6 +6,7 @@ import re
 
 
 class HookedRegex(object):
+
     """A regex object with a hook that generates output from what it has
     matched.
 
@@ -27,7 +28,7 @@ class HookedRegex(object):
 
     def __bool__(self):
         return self.regex is not None
-        
+
     def group(self, n=0):
         return self.regex.group(n)
 

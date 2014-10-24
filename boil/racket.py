@@ -5,6 +5,7 @@ import re
 
 
 class RacketComments(Extractor):
+
     """Extract Racket comments from source code.
 
     """
@@ -16,6 +17,7 @@ class RacketComments(Extractor):
 
 
 class RacketLineCodeGen(RacketComments, LineCodeGen):
+
     """Generate lines of code in Racket.
 
     """
@@ -24,10 +26,11 @@ class RacketLineCodeGen(RacketComments, LineCodeGen):
 
 
 class RacketConstantGen(RacketLineCodeGen):
+
     """Auto generate constants for Racket code.
 
     """
-    
+
     def matchComment(self, comm):
         return (HookedRegex(r'Constant Gen: (\S+) (.*)\n',
                             '(define \g<0> {})\n',
@@ -36,6 +39,7 @@ class RacketConstantGen(RacketLineCodeGen):
 
 
 class Racket(RacketConstantGen, RacketLineCodeGen):
+
     """Update all code found in a Racket sourcefile.
 
     """

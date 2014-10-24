@@ -1,9 +1,11 @@
 from gen import Gen
 from hookedre import HookedRegex
 
+
 class LineCodeGen(Gen):
+
     """Generate code on a line by line basis.
-    
+
     """
 
     def matchComment(self, comm):

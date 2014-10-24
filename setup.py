@@ -12,4 +12,3 @@ setup(name='Boil',
       license='GPLv3',
       packages=['boil'],
       scripts=['bp.py'])
-      

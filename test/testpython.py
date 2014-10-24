@@ -3,7 +3,7 @@ from boil.python import Python
 
 
 class PythonTester(Python, TestGen):
-    
+
     basicTest = r"""
 # Line Gen:
 # g(\d+)_(\d+)
