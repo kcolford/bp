@@ -68,7 +68,7 @@ class Gen(_Gen):
         looks at.
 
         Overload this method to match different comments.  A standard
-        overload should make use of the coop.notNoneCMI function
+        overload should make use of the coop.nonNoneCMI function
         decorator so that multiple different comments can be processes
         with one class.
         

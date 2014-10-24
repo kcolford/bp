@@ -53,9 +53,9 @@ def minCMI(cls):
 
     return AbstractCMI(cls, min)
 
-def notNoneCMI(cls):
+def nonNoneCMI(cls):
     """Return an AbstractCMI that locates the first non-None element."""
 
     return AbstractCMI(cls, lambda x, y: x if x is not None else y)
 
-__all__ = ['AbstractCMI', 'minCMI', 'notNoneCMI']
+__all__ = ['AbstractCMI', 'minCMI', 'nonNoneCMI']
