@@ -1,6 +1,7 @@
 from hookedre import HookedRegex
 from extractor import Extractor
 from linegen import LineCodeGen
+import re
 
 
 class RacketComments(Extractor):

@@ -4,6 +4,7 @@ It then parses them, and adds their content to the code.
 
 """
 
+from extractor import Extractor
 import re
 
 

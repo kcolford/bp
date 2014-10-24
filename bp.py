@@ -22,9 +22,9 @@
 """
 
 import argparse
-import itertools
 import sys
 from boil.racket import Racket
+import boil.python
 
 
 def update(text):

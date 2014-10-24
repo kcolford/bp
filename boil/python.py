@@ -1,5 +1,6 @@
 from extractor import Extractor
 from linegen import LineCodeGen
+import re
 
 
 class PythonComments(Extractor):
