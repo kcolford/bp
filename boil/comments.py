@@ -1,4 +1,4 @@
-from boil.core import Extractor
+from core.extractor import Extractor
 import re
 
 
@@ -24,3 +24,5 @@ class Lisp(Extractor):
 
     def lineComment(self, text, start):
         return self.__regex.search(text, start)
+
+__all__ = ['Shell', 'Lisp']
