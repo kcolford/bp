@@ -1,5 +1,5 @@
 from testgen import TestGen
-from boil.racket import Racket
+from boil.langs import Racket
 
 
 class RacketConstantTester(TestGen, Racket):

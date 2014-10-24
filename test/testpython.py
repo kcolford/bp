@@ -1,5 +1,5 @@
 from testgen import TestGen
-from boil.python import Python
+from boil.langs import Python
 
 
 class PythonTester(Python, TestGen):

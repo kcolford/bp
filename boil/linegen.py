@@ -1,5 +1,5 @@
-from gen import Gen
-from hookedre import HookedRegex
+from core.gen import Gen
+from core.hookedre import HookedRegex
 
 
 class LineCodeGen(Gen):
