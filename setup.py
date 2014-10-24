@@ -1,15 +1,20 @@
 #!/usr/bin/python
 
 from distutils.core import setup
+
+with open('README.txt') as f:
+    long_description = f.read()
+
 setup(
-    name='txt2boil', version='alpha',
+    name='txt2boil', license='MIT', version='alpha',
+
     description='A configurable boilerplate generator.',
+    long_description=long_description,
 
     author='Kieran Colford', author_email='colfordk@gmail.com',
     maintainer='Kieran Colford', maintainer_email='colfordk@gmail.com',
 
     url='https://github.com/kcolford/bp',
-    license='GPLv3',
 
     packages=['boil', 'boil.core'],
     scripts=['bp.py'])
