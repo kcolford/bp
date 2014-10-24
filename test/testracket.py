@@ -1,32 +1,7 @@
-#!/usr/bin/python
+from testgen import TestGen
+from boil.racket import Racket
 
-# Copyright (C) 2014 Kieran Colford
-
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-
-# This program is distributed in the hope that it will be useful, but
-# WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-# General Public License for more details.
-
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see
-# <http://www.gnu.org/licenses/>.
-
-
-import bp
-import unittest
-
-class TestFramework(unittest.TestCase):
-    
-    def checkGenerates(self, src, out):
-        self.assertMultiLineEqual(out, self.gen(src))
-        self.assertMultiLineEqual(out, self.gen(out))
-
-class RacketConstantTester(TestFramework, bp.RacketConstantGen):
+class RacketConstantTester(TestGen, Racket):
     """Test the boilerplate generation in Racket code.
 
     """
@@ -85,9 +60,6 @@ r5/7
         self.assertEqual(
             c, [r"Constant Gen: r(\d+)/(\d+) (make-my-rational \1 \2)" + 
                 "\n"])
-
-
-class RacketTester(bp.Racket, RacketConstantTester):
     
     lineGenTest = r"""
 ;; Line Gen:
@@ -108,31 +80,3 @@ r5/7
 
     def testLineGen(self):
         self.checkGenerates(self.lineGenTest, self.lineGenAnswer)
-
-
-class PythonTester(bp.Python, TestFramework):
-    
-    basicTest = r"""
-# Line Gen:
-# g(\d+)_(\d+)
-# \g<0> = divmod(\1, \2)
-
-print g9_7
-"""
-
-    basicAnswer = r"""
-# Line Gen:
-# g(\d+)_(\d+)
-# \g<0> = divmod(\1, \2)
-g9_7 = divmod(9, 7)
-
-print g9_7
-"""
-
-    def testBasic(self):
-        self.checkGenerates(self.basicTest, self.basicAnswer)
-
-
-if __name__ == '__main__':
-    unittest.main()
-    #PythonTester('testBasic').testBasic()
