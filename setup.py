@@ -17,4 +17,4 @@ setup(
     url='https://github.com/kcolford/bp',
 
     packages=['boil', 'boil.core'],
-    scripts=['bp.py'])
+    scripts=['txt2boil'])
