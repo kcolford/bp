@@ -10,6 +10,7 @@ regexs.
 import argparse
 import sys
 from boil.langs import Racket
+from boil.version import version
 
 
 def update(text):
@@ -86,8 +87,12 @@ def main():
     parser.add_argument('-t', '--tests', '--run-tests',
                         help='run the testsuites',
                         action='store_true')
+    parser.add_argument('--version', help='display version string and exit',
+                        action='store_true')
     args = parser.parse_args()
-    if args.tests:
+    if args.version:
+        sys.stdout.write(version + '\n')
+    elif args.tests:
         unittest.main()
     elif args.files:
         for f in args.files:
