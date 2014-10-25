@@ -17,7 +17,7 @@ setup(
     author='Kieran Colford', author_email='colfordk@gmail.com',
     maintainer='Kieran Colford', maintainer_email='colfordk@gmail.com',
 
-    url='https://github.com/kcolford/bp',
+    url='https://github.com/kcolford/txt2boil',
     download_url='',            # TODO
 
     packages=['boil', 'boil.core'],
