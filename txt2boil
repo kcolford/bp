@@ -5,6 +5,10 @@
 We do so according to a series of marker comments found through
 regexs.
 
+If --in-place is specified then the files are updated in place, if not
+then they are printed to stdout.  If - is specified as an input file,
+then read from stdin.
+
 """
 
 import argparse
@@ -80,21 +84,15 @@ def main():
 
     parser = argparse.ArgumentParser(description=description,
                                      epilog=epilog)
-    parser.add_argument('-i', '--inplace', help='modify files inplace',
+    parser.add_argument('-i', '--in-place', help='modify files inplace',
                         action='store_true')
-    parser.add_argument('-f', '--files', help='the files to update',
-                        action='append')
-    parser.add_argument('-t', '--tests', '--run-tests',
-                        help='run the testsuites',
-                        action='store_true')
+    parser.add_argument('files', metavar='FILES...', action='append')
     parser.add_argument('--version', help='display version string and exit',
                         action='store_true')
     args = parser.parse_args()
     if args.version:
         sys.stdout.write(version + '\n')
-    elif args.tests:
-        unittest.main()
-    elif args.files:
+    elif args.FILE:
         for f in args.files:
             if args.inplace:
                 updateFile(f)
