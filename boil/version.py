@@ -40,7 +40,7 @@ def acceptsIgnoreRule(path):
 
     with open(path) as f:
         rules = set(f.readlines())
-    return rules.isdisjoint({'!/_version.py\n', '/_version.py\n'})
+    return '/_version.py\n' not in rules
     
 def updateCache(ver):
     """Update the cache file with the version string ver."""
@@ -48,10 +48,14 @@ def updateCache(ver):
     # Make sure the ignore file is in place so that our generated file
     # is ignored by VCS.
     ignorepath = os.path.join(getDir(), '.gitignore')
+
     if os.path.exists(ignorepath) and acceptsIgnoreRule(ignorepath):
+        # ignorepath is already there, and it doesn't have a rule that
+        # ignores _version.py.
         with open(ignorepath, 'a') as f:
             f.write('/_version.py\n')
     else:
+        # ignorepath doesn't exist yet so we have to create it.
         with open(ignorepath, 'w') as f:
             f.write('/_version.py\n' + '/.gitignore\n')
 
@@ -70,10 +74,10 @@ def getVersion():
     """
 
     try:
-        ver = callGit(['describe', '--abbrev=3'])
-        ver = ver.strip('\n')
+        ver = callGit(['describe', '--abbrev=3', '--match=v*'])
+        ver = ver.strip('v\n')
         ver = ver.replace('-', '.', 1)
-        ver = ver.replace('g', '')
+        ver = ver.split('-')[0]
         updateCache(ver)
     except OSError, CalledProcessError:
         import _version
