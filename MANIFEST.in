@@ -1,1 +1,3 @@
-include *.txt *.in
+include *.in
+include *.rst
+include *.txt

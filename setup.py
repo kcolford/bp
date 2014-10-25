@@ -2,9 +2,10 @@
 
 from distutils.core import setup
 import os
+import glob
 from boil.version import version
 
-with open('README.txt') as f:
+with open(glob.glob('README.*')[0]) as f:
     long_description = f.read()
 
 setup(
