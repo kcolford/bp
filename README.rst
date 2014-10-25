@@ -34,7 +34,7 @@ And no matter how many times you run the program on the source file,
 it will only generate the same output, or add/remove boilerplate
 according to how the source file changed.
 
-With this, one can keep the boilerplate in VCS and use txt2boil to
+With this, one can keep the boilerplate in VCS and use ``txt2boil`` to
 update it whenever they need to.
 
 Installation
