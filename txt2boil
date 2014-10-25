@@ -6,103 +6,95 @@ We do so according to a series of marker comments found through
 regexs.
 
 If --in-place is specified then the files are updated in place, if not
-then they are printed to stdout.  If - is specified as an input file,
-then read from stdin.
+then they are printed to stdout.
 
 """
 
 import argparse
+import collections
 import sys
-from boil.langs import Racket
+import textwrap
+import os
+from boil.langs import *
 from boil.version import version
-
-
-def update(text):
-    """Update source code text to generate boilerplate.
-
-    """
-
-    return Racket().gen(text)
-
-
-def readFrom(handle):
-    """Read text from handle depending on what type it is.
-
-    If it is a string then open it as a file.  Otherwise, treat it as
-    a file-like object and call read on it.
-
-    """
-
-    if isinstance(handle, str):
-        if handle == '-':
-            return sys.stdin.read()
-        else:
-            with open(handle, 'r') as f:
-                return f.read()
-    else:
-        return handle.read()
-
-
-def writeInto(handle, text):
-    """Write text to handle depending on what type it is.
-
-    If it is a string then open it as a file.  Otherwise, treat it as
-    a file-like object and call write on it.
-
-    """
-
-    if isinstance(handle, str):
-        if handle == '-':
-            sys.stdout.write(text)
-        else:
-            with open(handle, 'w') as f:
-                f.write(text)
-    else:
-        handle.write(text)
-
-
-def updateStream(fin, fout):
-    """Update a stream from fin and put the output in fout.
-
-    """
-
-    text = readFrom(fin)
-    text = update(text)
-    writeInto(fout, text)
-
-
-def updateFile(fname):
-    """Update a file in place.
-
-    """
-
-    updateStream(fname, fname)
 
 
 def main():
     """The main method."""
 
+    global ext_lang
+
     parser = argparse.ArgumentParser(description=description,
                                      epilog=epilog)
-    parser.add_argument('-i', '--in-place', help='modify files inplace',
-                        action='store_true')
-    parser.add_argument('files', metavar='FILES...', action='append')
-    parser.add_argument('--version', help='display version string and exit',
-                        action='store_true')
+    parser.add_argument('-i', '--in-place', action='store_true',
+                        help='modify files inplace')
+    parser.add_argument('files', metavar='FILES', nargs='*',
+                        help='the files to process')
+    parser.add_argument('--version', action='version', version=version)
+    parser.add_argument('--langs', action='store_true',
+                        help='print out all the supported languages')
     args = parser.parse_args()
-    if args.version:
-        sys.stdout.write(version + '\n')
-    elif args.FILE:
-        for f in args.files:
-            if args.inplace:
-                updateFile(f)
+
+    # Print the current set of working languages.
+    if args.langs:
+        # Collect the languages so that they are indexed by name
+        # rather than by extension.
+        langs = {}
+        for ext, cls in ext_lang.items():
+            cls = type(cls)
+            ext = '.' + ext
+            if cls.__name__ in langs:
+                langs[cls.__name__][1].append(ext)
             else:
-                updateStream(f, sys.stdout)
-    else:
-        parser.print_help()
+                langs[cls.__name__] = (cls.__doc__, [ext])
+
+        # Begin output
+        parser.print_usage()
+        sys.stdout.write('\n')
+        sys.stdout.write(textwrap.fill(textwrap.dedent("""\
+        The following languages are supported:
+        """)) + '\n')
+        for l in sorted(langs.keys()):
+            out = langs[l][0] + ' (' + ', '.join(langs[l][1]) + ')'
+
+            prefix2 = ' '.join([''] * 20)
+            prefix1 = prefix2[:2] + l + prefix2[2+len(l):]
+
+            wrapped = textwrap.fill(out, initial_indent=prefix1,
+                                    subsequent_indent=prefix2)
+            
+            sys.stdout.write(wrapped + '\n')
+
+        parser.exit(0)          # Exit once we're done
+
+    for fname in args.files:
+        # load the file
+        with open(fname) as f:
+            text = f.read()
+
+        # generate the new output according to the language
+        _, ext = os.path.splitext(fname)
+        text = ext_lang[ext].gen(text)
+
+        # emit the output
+        if args.inplace:
+            with open(fname, 'w') as f:
+                f.write(text)
+        else:
+            sys.stdout.write(text)
+
 
 description = __doc__
 epilog = ''
+ext_lang = collections.defaultdict(Unknown)
+ext_lang.update({
+    'c': C(),
+    'cc': CXX(),
+    'cpp': CXX(),
+    'java': Java(),
+    'py': Python(),
+    'rkt': Racket(),
+})
 
 if __name__ == '__main__':
     main()

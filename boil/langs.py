@@ -12,11 +12,16 @@ from linegen import LineCodeGen
 import comments
 
 
+class Unknown(Gen):
+    
+    """The unknown language."""
+
+    pass
+
+
 class Python(comments.Shell, LineCodeGen):
 
-    """Update all code found in a Python source file.
-
-    """
+    """The Python language."""
 
     pass
 
@@ -35,11 +40,30 @@ class RacketConstantGen(Gen):
 
 class Racket(RacketConstantGen, comments.Lisp, LineCodeGen):
 
-    """Update all code found in a Racket sourcefile.
-
-    """
+    """The Racket language."""
 
     pass
 
 
-__all__ = ['Python', 'Racket']
+class C(comments.C, LineCodeGen):
+
+    """The C language."""
+
+    pass
+
+
+class CXX(comments.CXX, LineCodeGen):
+
+    """The C++ language."""
+
+    pass
+
+
+class Java(CXX):
+
+    """The Java language."""
+
+    pass
+
+
+__all__ = ['C', 'CXX', 'Java', 'Python', 'Racket', 'Unknown']

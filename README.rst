@@ -1,11 +1,11 @@
 txt2boil
-********
+========
 
 This is a boilerplate generator that generates code based on the
 comments it finds in source code.
 
 Motivation
-==========
+----------
 
 The motivation is that ordinary boilerplate generators either require
 you to hack the build system you're using (to build the source code on
@@ -38,7 +38,7 @@ With this, one can keep the boilerplate in VCS and use txt2boil to
 update it whenever they need to.
 
 Installation
-============
+------------
 
 The preferred way to install this is using pip::
 
@@ -53,27 +53,30 @@ run the setup.py script::
     python setup.py install
 
 How To Use
-==========
+----------
 
-In order to use txt2boil as in the example above, simply use::
+In order to use ``txt2boil`` as in the example above, simply use::
 
     $ txt2boil -i rational.rkt
 
-The -i option specifies to update the file in place rather than
+The ``-i`` option specifies to update the file in place rather than
 outputting it on stdout.
 
 Supported Languages
-===================
+-------------------
 
 Language support all depends on what language the package's core
 library has functionality for.  The current languages that are
 supported are:
 
-* Python
-* Racket
+- C
+- C++
+- Java
+- Python
+- Racket
 
 License
-=======
+-------
 
 txt2boil is released under the MIT license which can be found in the
 file LICENSE.txt.

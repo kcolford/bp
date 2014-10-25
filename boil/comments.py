@@ -25,4 +25,27 @@ class Lisp(Extractor):
     def lineComment(self, text, start):
         return self.__regex.search(text, start)
 
-__all__ = ['Shell', 'Lisp']
+
+class C(Extractor):
+    
+    """Handle C style /* ... */ comments.
+
+    """
+
+    __regex = re.compile(r'/\* (.*?)\*/', re.M | re.S)
+
+    def blockComment(self, text, start):
+        return self.__regex.search(text, start)
+
+
+class CXX(C):
+
+    """Handle C++ style // ... comments.
+
+    """
+
+    __regex = re.compile(r'^//+ (.*)', re.M)
+
+    def lineComment(self, text, start):
+        return self.__regex.search(text, start)
+
