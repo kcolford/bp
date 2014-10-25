@@ -45,11 +45,27 @@ The preferred way to install this is using pip::
     pip install txt2boil
 
 Although if you're not a regular pip user or are not used to using pip
-then the alternative is to just download the repository with git and
-run the setup.py script::
+then the alternative is to just download the repository with git::
 
     git clone https://github.com/kcolford/txt2boil.git
     cd txt2boil
+
+Or you can download the tar package from the PyPi website by `clicking
+here <https://pypi.python.org/pypi/txt2boil>`_ and then clicking on
+the big green Download icon.  Alternatively you can use ``wget`` (or
+``curl`` if you prefer)::
+
+    wget https://pypi.python.org/packages/source/t/txt2boil/txt2boil-x.x.x.tar.gz
+
+Once you have the tar ball, unpack it and change to the directory
+containing it::
+
+    tar xf txt2boil-x.x.x.tar.gz
+    cd txt2boil-x.x.x
+
+Once you're in the source repository (regardless of how you got it)
+run the ``setup.py`` script::
+
     python setup.py install
 
 How To Use
@@ -57,7 +73,7 @@ How To Use
 
 In order to use ``txt2boil`` as in the example above, simply use::
 
-    $ txt2boil -i rational.rkt
+    txt2boil -i rational.rkt
 
 The ``-i`` option specifies to update the file in place rather than
 outputting it on stdout.
