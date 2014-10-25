@@ -1,12 +1,14 @@
 #!/usr/bin/python
 
 from distutils.core import setup
+import os
+from boil.version import version
 
 with open('README.txt') as f:
     long_description = f.read()
 
 setup(
-    name='txt2boil', license='MIT', version='0.0.1a2',
+    name='txt2boil', license='MIT', version=version,
 
     description='A configurable boilerplate generator.',
     long_description=long_description,
@@ -26,7 +28,10 @@ setup(
         'Development Status :: 3 - Alpha',
         'Environment :: Console',
         'Intended Audience :: Developers',
-        'License :: MIT',
-        'Operating System :: Any',
+        'License :: OSI Approved :: MIT License',
+        'Operating System :: OS Independent',
+        'Natural Language :: English',
+        'Programming Language :: Python',
+        'Topic :: Software Development :: Code Generators',
     ],
 )
