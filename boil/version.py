@@ -21,6 +21,7 @@ import re
 import subprocess
 import sys
 
+
 def getDir():
     """Return the directory that this file is in."""
 
@@ -29,11 +30,13 @@ def getDir():
 
     return thisdir
 
+
 def callGit(args):
     """Call git with args and return the output."""
 
     return subprocess.check_output(['git', '-C', getDir()] + args,
                                    stderr=subprocess.STDOUT)
+
 
 def acceptsIgnoreRule(path):
     """Return whether the file at path will accept the ignore rule."""
@@ -41,7 +44,8 @@ def acceptsIgnoreRule(path):
     with open(path) as f:
         rules = set(f.readlines())
     return '/_version.py\n' not in rules
-    
+
+
 def updateCache(ver):
     """Update the cache file with the version string ver."""
 
@@ -63,6 +67,7 @@ def updateCache(ver):
     cachepath = os.path.join(getDir(), '_version.py')
     with open(cachepath, 'w') as f:
         f.write('version = ' + repr(ver))
+
 
 def getVersion():
     """Return the version string.
