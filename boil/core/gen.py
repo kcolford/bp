@@ -80,9 +80,14 @@ class Gen(_Gen):
 
         class Foo(Gen):
 
-            @cmi.nonNoneCMI(Foo)
+            @cmi.nonNoneCMI(lambda: Foo)
             def matchComment(self, comm):
                 return HookedRegex(...)
+
+        Note the way that Foo was wrapped in a lambda before being
+        passed to the cmi decorator.  If this was not done then it
+        would cause a syntax error because Foo is not defined at this
+        point.
 
         """
 

@@ -33,4 +33,4 @@ class HookedRegex(object):
         return self.regex.group(n)
 
     def output(self, match):
-        return match.expand(self.template.format(self.regex.group(2)))
+        match.expand(self.template.format(self.regex.group(2)))
