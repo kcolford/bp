@@ -81,7 +81,7 @@ def getVersion():
     """
 
     try:
-        ver = callGit(['describe', '--tags', '--abbrev=3', '--match=v*'])
+        ver = callGit(['describe', '--match=v*'])
         ver = ver.strip('v\n')
         ver = ver.replace('-', '.', 1)
         ver = ver.split('-')[0]

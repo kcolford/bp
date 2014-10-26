@@ -12,11 +12,11 @@ increment_version () {
     done
 }
 
-cur=`git describe --tags --abbrev=0 --match=v*`
+cur=`git describe --abbrev=0 --match=v*`
 new=`increment_version $cur`
 
 #echo $new
-git tag $num
-git push --all --tags
+git tag -a -m "Version $num" $num
+git push --all --follow-tags
 
 . upload.sh
