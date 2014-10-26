@@ -84,7 +84,10 @@ def getVersion():
         ver = ver.replace('-', '.', 1)
         ver = ver.split('-')[0]
         updateCache(ver)
-    except OSError, CalledProcessError:
+    except OSError:
+        import _version
+        ver = _version.version
+    except CalledProcessError:
         import _version
         ver = _version.version
 
