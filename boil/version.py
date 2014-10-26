@@ -19,6 +19,7 @@ Currently, only git is a supported VCS.
 import os
 import re
 import subprocess
+from subprocess import CalledProcessError
 import sys
 
 
