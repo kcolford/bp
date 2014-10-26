@@ -19,6 +19,7 @@ Currently, only git is a supported VCS.
 import os
 import re
 import subprocess
+from subprocess import CalledProcessError
 import sys
 
 
@@ -34,8 +35,9 @@ def getDir():
 def callGit(args):
     """Call git with args and return the output."""
 
-    return subprocess.check_output(['git', '-C', getDir()] + args,
-                                   stderr=subprocess.STDOUT)
+    out = subprocess.check_output(['git', '-C', getDir()] + args,
+                                  stderr=subprocess.STDOUT)
+    return str(out, 'ascii')
 
 
 def acceptsIgnoreRule(path):
@@ -84,7 +86,10 @@ def getVersion():
         ver = ver.replace('-', '.', 1)
         ver = ver.split('-')[0]
         updateCache(ver)
-    except OSError, CalledProcessError:
+    except OSError:
+        import _version
+        ver = _version.version
+    except CalledProcessError:
         import _version
         ver = _version.version
 
