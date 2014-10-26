@@ -1,3 +1,3 @@
 #!/bin/bash
 
-./setup.py sdist bdist_wininst bdist_egg upload
+./setup.py register sdist bdist_egg upload "$@"
