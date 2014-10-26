@@ -18,4 +18,5 @@ new=`increment_version $cur`
 #echo $new
 git tag $num
 git push --all --tags
-./upload.sh
+
+. upload.sh
