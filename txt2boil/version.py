@@ -37,7 +37,7 @@ def callGit(args):
 
     out = subprocess.check_output(['git', '-C', getDir()] + args,
                                   stderr=subprocess.STDOUT)
-    return str(out, 'ascii')
+    return str(out)
 
 
 def acceptsIgnoreRule(path):
