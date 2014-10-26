@@ -1,6 +1,6 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
-from distutils.core import setup
+from setuptools import setup
 import os
 import glob
 from boil.version import version
@@ -35,4 +35,6 @@ setup(
         'Programming Language :: Python',
         'Topic :: Software Development :: Code Generators',
     ],
+
+    use_2to3=True,
 )
