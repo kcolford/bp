@@ -1,4 +1,4 @@
-"""Frontend interface to the boil library.
+"""Frontend interface to the txt2boil library.
 
 Each class is designed for a particular language and inherits its
 features from different parent classes.

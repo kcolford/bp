@@ -1,5 +1,3 @@
-#!/usr/bin/python
-
 """Update the boilerplate in source code.
 
 We do so according to a series of marker comments found through
@@ -15,8 +13,8 @@ import collections
 import sys
 import textwrap
 import os
-from boil.langs import *
-from boil.version import version
+from langs import *
+from version import version
 
 
 def main():

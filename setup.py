@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 
-from setuptools import setup
+from setuptools import *
 import os
 import glob
-from boil.version import version
+from txt2boil.version import version
 
 with open(glob.glob('README.*')[0]) as f:
     long_description = f.read()
@@ -20,8 +20,9 @@ setup(
     url='https://github.com/kcolford/txt2boil',
     download_url='',            # TODO
 
-    packages=['boil', 'boil.core'],
-    scripts=['txt2boil'],
+    packages=find_packages(),
+    test_suite='txt2boil.test',
+    entry_points={'console_scripts':['txt2boil = txt2boil.main:main']},
 
     platforms=['Any'],
 

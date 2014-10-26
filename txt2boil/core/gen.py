@@ -75,8 +75,8 @@ class Gen(_Gen):
         For example, if one were to write a Foo generator then it
         would look something like this:
 
-        from boil.core import Gen, HookedRegex
-        import boil.cmi
+        from txt2boil.core import *
+        import txt2boil.cmi
 
         class Foo(Gen):
 

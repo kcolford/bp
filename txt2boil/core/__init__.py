@@ -1,4 +1,4 @@
-"""Core functionality for the boil package.
+"""Core functionality for the txt2boil package.
 
 """
 

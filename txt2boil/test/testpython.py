@@ -1,5 +1,5 @@
 from testgen import TestGen
-from boil.langs import Python
+from langs import Python
 
 
 class PythonTester(Python, TestGen):
@@ -24,5 +24,3 @@ print g9_7
     def testBasic(self):
         self.checkGenerates(self.basicTest, self.basicAnswer)
 
-if __name__ == '__main__':
-    pass
