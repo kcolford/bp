@@ -5,6 +5,33 @@ import os
 import glob
 from txt2boil.version import version
 
+
+class total_upload(Command):
+
+    description = "upload all available binaries"
+    user_options = []
+
+    def initialize_options(self):
+        pass
+
+    def finalize_options(self):
+        pass
+
+    commands = ['register', 
+                'sdist', 'sdist_deb',
+                'bdist_rpm', 'bdist_deb',
+                'bdist_msi', 'bdist_msi_fixed',
+                'bdist_egg',
+                'upload']
+
+    def run(self):
+        for c in self.commands:
+            try:
+                self.run_command(c)
+            except DistutilsError:
+                pass
+
+
 with open(glob.glob('README.*')[0]) as f:
     long_description = f.read()
 
@@ -38,4 +65,8 @@ setup(
     ],
 
     use_2to3=True,
+
+    cmdclass={'total_upload':total_upload},
+
+    setup_requires=['xdistutils', 'stdeb'],
 )
