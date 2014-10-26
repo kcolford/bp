@@ -1,8 +1,10 @@
 #!/usr/bin/python
 
 from setuptools import *
+from distutils.errors import *
 import os
 import glob
+import sys
 from txt2boil.version import version
 
 
@@ -28,14 +30,16 @@ class total_upload(Command):
         for c in self.commands:
             try:
                 self.run_command(c)
-            except DistutilsError:
-                pass
+            except DistutilsError as e:
+                sys.stderr.write(e.message + '\n')
 
 
 with open(glob.glob('README.*')[0]) as f:
     long_description = f.read()
 
 setup(
+    setup_requires=['xdistutils', 'stdeb'],
+    
     name='txt2boil', license='MIT', version=version,
 
     description='A configurable boilerplate generator.',
@@ -67,6 +71,4 @@ setup(
     use_2to3=True,
 
     cmdclass={'total_upload':total_upload},
-
-    setup_requires=['xdistutils', 'stdeb'],
 )
