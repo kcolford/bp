@@ -4,7 +4,7 @@ gpl=$(< gpl_declaration.py)
 for f in `git ls-files '*.py'`
 do
     case "$(< $f)" in
-	*$gpl*)			# Do nothing
+	*$gpl*)			# GPL already there, do nothing
 	    ;;
 	'#!'*)			# Preserve the sh-bang line
 	    { 
@@ -13,11 +13,15 @@ do
 		cat gpl_declaration.py;
 		tail -n +2 $f;
 	    } > $f-t
-	    mv -f $f-t $f 2> /dev/null
 	    ;;
 	*)			# Prepend the notice
 	    cat gpl_declaration.py $f > $f-t
-	    mv $f-t $f 2> /dev/null
 	    ;;
     esac
+
+    # Replace old file with new file.
+    if [ -f $f-t ]; then
+	chmod --reference=$f $f-t # preserve mode bits
+	mv $f-t $f
+    fi
 done
