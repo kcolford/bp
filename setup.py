@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 from setuptools import *
+from distutils.errors import DistutilsError
 import os
 import glob
 from txt2boil.version import version
@@ -18,8 +19,8 @@ class total_upload(Command):
         pass
 
     commands = ['register', 
-                'sdist', 'sdist_deb',
-                'bdist_rpm', 'bdist_deb',
+                'sdist',
+                'bdist_rpm',
                 'bdist_msi', 'bdist_msi_fixed',
                 'bdist_egg',
                 'upload']
@@ -68,5 +69,5 @@ setup(
 
     cmdclass={'total_upload':total_upload},
 
-    setup_requires=['xdistutils', 'stdeb'],
+    setup_requires=['xdistutils'],
 )
