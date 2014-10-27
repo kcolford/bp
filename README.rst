@@ -111,8 +111,3 @@ of compiling them and uploading them.  Anyone who has privileges to
 upload to PyPi need only run either the shell script ``upload.sh``
 **or** the batch script ``upload.bat``.
 
-License
--------
-
-txt2boil is released under the MIT license which can be found in the
-file LICENSE.txt.
