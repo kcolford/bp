@@ -2,7 +2,7 @@ txt2boil
 ========
 
 This is a boilerplate generator that generates code based on the
-comments it finds in source code.
+comments it finds in source code.  
 
 Motivation
 ----------
@@ -90,6 +90,26 @@ supported are:
 - Java
 - Python
 - Racket
+
+Internet Presence 
+-----------------
+
+There are two significant web resources for txt2boil.  The first is
+the source repository and the second is the PyPi page.  Regardless of
+which one you go to, this document ought to be the main page found
+there.
+
+The primary source repository can be found at `Git Hub
+<https://github.com/kcolford/txt2boil>`_ while the PyPi (Python
+Package Index) page can be found `here
+<https://pypi.python.org/pypi/txt2boil/>`_.
+
+While the Git Hub repository only has source code, the PyPi page has
+downloads for binary distributions.  These binary distributions are
+provided by anyone generous enough to lend their computer to the task
+of compiling them and uploading them.  Anyone who has privileges to
+upload to PyPi need only run either the shell script ``upload.sh``
+**or** the batch script ``upload.bat``.
 
 License
 -------
