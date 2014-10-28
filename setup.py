@@ -57,8 +57,9 @@ with open(glob.glob('README.*')[0]) as f:
 setup(
     name='txt2boil', license='GPLv3+', version=version,
 
-    description='A configurable boilerplate generator.',
+    description='Generate boilerplate from source code comments.',
     long_description=long_description,
+    keywords=['boilerplate', 'comments'],
 
     author='Kieran Colford', author_email='colfordk@gmail.com',
     maintainer='Kieran Colford', maintainer_email='colfordk@gmail.com',
