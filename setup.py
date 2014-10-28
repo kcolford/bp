@@ -77,7 +77,8 @@ setup(
         'Development Status :: 3 - Alpha',
         'Environment :: Console',
         'Intended Audience :: Developers',
-        'License :: OSI Approved :: MIT License',
+        'License :: OSI Approved :: GNU General Public License v3 ' +
+        'or later (GPLv3+)',
         'Operating System :: OS Independent',
         'Natural Language :: English',
         'Programming Language :: Python',
