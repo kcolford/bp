@@ -52,7 +52,7 @@ class total_upload(Command):
 
 
 with open(glob.glob('README.*')[0]) as f:
-    long_description = f.read()
+    long_description = '\n' + f.read()
 
 setup(
     name='txt2boil', license='GPLv3+', version=version,
