@@ -55,7 +55,7 @@ with open(glob.glob('README.*')[0]) as f:
     long_description = f.read()
 
 setup(
-    name='txt2boil', license='MIT', version=version,
+    name='txt2boil', license='GPLv3+', version=version,
 
     description='A configurable boilerplate generator.',
     long_description=long_description,
