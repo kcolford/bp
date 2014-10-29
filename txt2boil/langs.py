@@ -24,11 +24,12 @@ features from different parent classes.
 
 
 import cmi
+from core import HookedRegex
 from generic_gen import GenericGen
 import comments
 
 
-class Unknown(Gen):
+class Unknown(GenericGen):
     
     """The unknown language."""
 
@@ -42,7 +43,7 @@ class Python(comments.Shell, GenericGen):
     pass
 
 
-class RacketConstantGen(GenericGen):
+class _RacketConstantGen(GenericGen):
 
     """Auto generate constants for Racket code.
 
@@ -54,7 +55,7 @@ class RacketConstantGen(GenericGen):
                             '(define \g<0> {})\n', comm)
 
 
-class Racket(RacketConstantGen, comments.Lisp, GenericGen):
+class Racket(_RacketConstantGen, comments.Lisp, GenericGen):
 
     """The Racket language."""
 
@@ -80,6 +81,3 @@ class Java(CXX):
     """The Java language."""
 
     pass
-
-
-__all__ = ['C', 'CXX', 'Java', 'Python', 'Racket', 'Unknown']

@@ -1,22 +1,17 @@
-# Copyright (C) 2014 Kieran Colford
-#
-# This file is part of txt2boil.
-#
-# txt2boil is free software: you can redistribute it and/or modify it
-# under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-# 
-# txt2boil is distributed in the hope that it will be useful, but
-# WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-# General Public License for more details.
-# 
-# You should have received a copy of the GNU General Public License
-# along with txt2boil.  If not, see <http://www.gnu.org/licenses/>.
+"""Test the languages that are provided.
 
-from testgen import TestGen
-from langs import Racket
+"""
+
+
+from unittest import TestCase
+from txt2boil.langs import Racket, Python
+
+
+class TestGen(TestCase):
+
+    def checkGenerates(self, src, out):
+        self.assertMultiLineEqual(out, self.gen(src))
+        self.assertMultiLineEqual(out, self.gen(out))
 
 
 class RacketConstantTester(TestGen, Racket):
@@ -98,3 +93,27 @@ r5/7
 
     def testLineGen(self):
         self.checkGenerates(self.lineGenTest, self.lineGenAnswer)
+
+
+class PythonTester(Python, TestGen):
+
+    basicTest = r"""
+# Line Gen:
+# g(\d+)_(\d+)
+# \g<0> = divmod(\1, \2)
+
+print g9_7
+"""
+
+    basicAnswer = r"""
+# Line Gen:
+# g(\d+)_(\d+)
+# \g<0> = divmod(\1, \2)
+g9_7 = divmod(9, 7)
+
+print g9_7
+"""
+
+    def testBasic(self):
+        self.checkGenerates(self.basicTest, self.basicAnswer)
+

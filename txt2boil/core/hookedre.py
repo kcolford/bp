@@ -32,7 +32,7 @@ class HookedRegex(object):
     def __new__(cls, match, template, text):
         if re.match(match, text, re.M) is None:
             return None
-        return super(HookedRegex, cls).__new__(cls, match, template, text)
+        return super(HookedRegex, cls).__new__(cls)
 
     def __init__(self, match, template, text):
         """Initialize the object as a clone of another regex, but add a hook

@@ -13,14 +13,24 @@ features.
 # exposes the generator to the module level namespace.  The GenericGen
 # class will pick it up automatically and generate the appropriate
 # code for it.
-from core import Gen
+
+#from core import Gen
 from linegen import LineCodeGen
 from pygen import PyGen
 
 
+def collectGenerators(cls):
+    if isinstance(cls, str):
+        cls = globals()[cls]
+    klasses = [c for (nm, c) in globals().items() if nm.endswith('Gen')]
+    parents = tuple(klasses)
+    return type(cls.__name__, parents, dict(cls.__dict__))
+
+
 # GenericGen will inherit from any class in module level scope that
 # ends with the name Gen.
-class GenericGen(*[cls for cls in globals().keys() if cls.endswith('Gen')]):
+@collectGenerators
+class GenericGen(object):
 
     """A generic generator.
 

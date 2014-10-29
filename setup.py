@@ -68,7 +68,7 @@ setup(
     download_url='',            # TODO
 
     packages=find_packages(),
-    test_suite='txt2boil.test',
+    test_suite='test',
     entry_points={'console_scripts':['txt2boil = txt2boil.main:main']},
 
     platforms=['Any'],

@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 # Copyright (C) 2014 Kieran Colford
 #
 # This file is part of txt2boil.
@@ -34,24 +36,26 @@ from langs import *
 from version import version
 
 
-def main():
+def main(argv=sys.argv[1:]):
     """The main method."""
 
     global ext_lang
 
     parser = argparse.ArgumentParser(description=description,
                                      epilog=epilog)
-    parser.add_argument('-i', '--in-place', action='store_true',
-                        help='modify files inplace')
     parser.add_argument('files', metavar='FILES', nargs='*',
                         help='the files to process')
     parser.add_argument('--version', action='version', version=version)
-    parser.add_argument('--langs', action='store_true',
+    parser.add_argument('-i', '--in-place', action='store_true',
+                        help='modify files inplace')
+    parser.add_argument('--print-langs', action='store_true',
                         help='print out all the supported languages')
-    args = parser.parse_args()
+    parser.add_argument('--lang', action='store', default='auto',
+                        help='use the language with given extention')
+    args = parser.parse_args(argv)
 
     # Print the current set of working languages.
-    if args.langs:
+    if args.print_langs:
         # Collect the languages so that they are indexed by name
         # rather than by extension.
         langs = {}
@@ -82,17 +86,23 @@ def main():
 
         parser.exit(0)          # Exit once we're done
 
+    if not args.files:
+        parser.print_usage()
+
     for fname in args.files:
         # load the file
         with open(fname) as f:
             text = f.read()
 
         # generate the new output according to the language
-        _, ext = os.path.splitext(fname)
+        if args.lang == 'auto':
+            _, ext = os.path.splitext(fname)
+        else:
+            ext = args.lang
         text = ext_lang[ext].gen(text)
 
         # emit the output
-        if args.inplace:
+        if args.in_place:
             with open(fname, 'w') as f:
                 f.write(text)
         else:
