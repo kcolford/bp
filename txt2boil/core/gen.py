@@ -42,7 +42,7 @@ class _Gen(Extractor):
         """
 
         out = sorted((k, match.output(m)) for (k, m) in
-                     self.collectTriggers(match.group(1), code).items())
+                     self.collectTriggers(match.match, code).items())
         out = list(map(lambda a: a[1], out))
         return out
 

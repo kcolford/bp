@@ -24,8 +24,7 @@ features from different parent classes.
 
 
 import cmi
-from core import *
-from linegen import LineCodeGen
+from generic_gen import GenericGen
 import comments
 
 
@@ -36,14 +35,14 @@ class Unknown(Gen):
     pass
 
 
-class Python(comments.Shell, LineCodeGen):
+class Python(comments.Shell, GenericGen):
 
     """The Python language."""
 
     pass
 
 
-class RacketConstantGen(Gen):
+class RacketConstantGen(GenericGen):
 
     """Auto generate constants for Racket code.
 
@@ -55,21 +54,21 @@ class RacketConstantGen(Gen):
                             '(define \g<0> {})\n', comm)
 
 
-class Racket(RacketConstantGen, comments.Lisp, LineCodeGen):
+class Racket(RacketConstantGen, comments.Lisp, GenericGen):
 
     """The Racket language."""
 
     pass
 
 
-class C(comments.C, LineCodeGen):
+class C(comments.C, GenericGen):
 
     """The C language."""
 
     pass
 
 
-class CXX(comments.CXX, LineCodeGen):
+class CXX(comments.CXX, GenericGen):
 
     """The C++ language."""
 

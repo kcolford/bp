@@ -49,5 +49,17 @@ class HookedRegex(object):
     def group(self, n=0):
         return self.regex.group(n)
 
+    @property
+    def match(self):
+        """The regex string that this regex will be triggered by."""
+
+        return self.group(1)
+
+    @property
+    def text(self):
+        """The text that this regex was instantiated by."""
+
+        return self.group(0)
+
     def output(self, match):
-        match.expand(self.template.format(self.regex.group(2)))
+        return match.expand(self.template.format(self.regex.group(2)))
