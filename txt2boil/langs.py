@@ -27,18 +27,19 @@ import cmi
 from core import HookedRegex
 from generic_gen import GenericGen
 import comments
+import collections
 
 
 class Unknown(GenericGen):
     
-    """The unknown language."""
+    """default"""
 
     pass
 
 
 class Python(comments.Shell, GenericGen):
 
-    """The Python language."""
+    """.py"""
 
     pass
 
@@ -57,27 +58,39 @@ class _RacketConstantGen(GenericGen):
 
 class Racket(_RacketConstantGen, comments.Lisp, GenericGen):
 
-    """The Racket language."""
+    """.rkt"""
 
     pass
 
 
 class C(comments.C, GenericGen):
 
-    """The C language."""
+    """.c .h"""
 
     pass
 
 
 class CXX(comments.CXX, GenericGen):
 
-    """The C++ language."""
+    """.cc .cpp .hh .hpp"""
 
     pass
 
 
 class Java(CXX):
 
-    """The Java language."""
+    """.java"""
 
     pass
+
+
+ext_lang = collections.defaultdict(Unknown)
+for cls in globals().values():
+    if not isinstance(cls, type): continue 
+    if not issubclass(cls, comments.Comments): continue
+
+    for ext in cls.__doc__.split():
+        ext_lang[ext] = cls()
+        ext_lang[ext.strip('.')] = cls()
+
+__all__ = ['C', 'CXX', 'Java', 'Python', 'Racket', 'Unknown', 'ext_lang']

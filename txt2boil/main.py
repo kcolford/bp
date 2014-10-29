@@ -32,7 +32,7 @@ import collections
 import sys
 import textwrap
 import os
-from langs import *
+import langs
 from version import version
 
 
@@ -56,25 +56,14 @@ def main(argv=sys.argv[1:]):
 
     # Print the current set of working languages.
     if args.print_langs:
-        # Collect the languages so that they are indexed by name
-        # rather than by extension.
-        langs = {}
-        for ext, cls in ext_lang.items():
-            cls = type(cls)
-            ext = '.' + ext
-            if cls.__name__ in langs:
-                langs[cls.__name__][1].append(ext)
-            else:
-                langs[cls.__name__] = (cls.__doc__, [ext])
-
-        # Begin output
         parser.print_usage()
         sys.stdout.write('\n')
         sys.stdout.write(textwrap.fill(textwrap.dedent("""\
         The following languages are supported:
         """)) + '\n')
-        for l in sorted(langs.keys()):
-            out = langs[l][0] + ' (' + ', '.join(langs[l][1]) + ')'
+        for cls in sorted({c.__class__ for c in langs.ext_lang.values()}):
+            l = cls.__name__
+            out = cls.__doc__
 
             prefix2 = ' '.join([''] * 20)
             prefix1 = prefix2[:2] + l + prefix2[2+len(l):]
@@ -111,15 +100,6 @@ def main(argv=sys.argv[1:]):
 
 description = __doc__
 epilog = ''
-ext_lang = collections.defaultdict(Unknown)
-ext_lang.update({
-    'c': C(),
-    'cc': CXX(),
-    'cpp': CXX(),
-    'java': Java(),
-    'py': Python(),
-    'rkt': Racket(),
-})
 
 if __name__ == '__main__':
     main()

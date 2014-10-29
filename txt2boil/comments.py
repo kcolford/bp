@@ -19,7 +19,16 @@ from core import *
 import re
 
 
-class Shell(Extractor):
+class Comments(Extractor):
+
+    """A base class to identify subclasses as being comment classes.
+    
+    """
+
+    pass
+
+
+class Shell(Comments):
 
     """Handle shell style comments.
 
@@ -31,7 +40,7 @@ class Shell(Extractor):
         return self.__regex.search(text, start)
 
 
-class Lisp(Extractor):
+class Lisp(Comments):
 
     """Handle lisp style comments.
 
@@ -43,7 +52,7 @@ class Lisp(Extractor):
         return self.__regex.search(text, start)
 
 
-class C(Extractor):
+class C(Comments):
     
     """Handle C style /* ... */ comments.
 
