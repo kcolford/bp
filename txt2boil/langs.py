@@ -49,7 +49,7 @@ class _RacketConstantGen(GenericGen):
 
     """
 
-    @cmi.nonNoneCMI(lambda: RacketConstantGen)
+    @cmi.nonNoneCMI(lambda: _RacketConstantGen)
     def matchComment(self, comm):
         return HookedRegex(r'Constant Gen: (\S+) (.*)\n',
                             '(define \g<0> {})\n', comm)
