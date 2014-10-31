@@ -31,9 +31,9 @@ features.
 # class will pick it up automatically and generate the appropriate
 # code for it.
 
-#from core import Gen
-from linegen import LineCodeGen
-from pygen import PyGen
+#from .core import Gen
+from .linegen import LineCodeGen
+from .pygen import PyGen
 
 
 def collectGenerators(cls):

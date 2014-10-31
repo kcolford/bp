@@ -20,8 +20,8 @@
 """
 
 import textwrap
-from core import *
-import cmi
+from .core import *
+from . import cmi
 
 
 class _PyGenHookedRegex(HookedRegex):

@@ -32,8 +32,8 @@ import collections
 import sys
 import textwrap
 import os
-import langs
-from version import version
+from . import langs
+from .version import version
 
 
 def main(argv=sys.argv[1:]):

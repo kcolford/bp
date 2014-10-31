@@ -23,10 +23,10 @@ features from different parent classes.
 """
 
 
-import cmi
-from core import HookedRegex
-from generic_gen import GenericGen
-import comments
+from . import cmi
+from .core import HookedRegex
+from .generic_gen import GenericGen
+from . import comments
 import collections
 
 
@@ -84,13 +84,21 @@ class Java(CXX):
     pass
 
 
-ext_lang = collections.defaultdict(Unknown)
-for cls in globals().values():
-    if not isinstance(cls, type): continue 
-    if not issubclass(cls, comments.Comments): continue
+def setupLangs():
+    """Return a dictionary that maps file extensions to languages.
 
-    for ext in cls.__doc__.split():
-        ext_lang[ext] = cls()
-        ext_lang[ext.strip('.')] = cls()
+    """
+
+    ext_lang = collections.defaultdict(Unknown)
+    for cls in globals().values():
+        if not isinstance(cls, type): continue 
+        if not issubclass(cls, comments.Comments): continue
+        
+        for ext in cls.__doc__.split():
+            ext_lang[ext] = cls()
+            ext_lang[ext.strip('.')] = cls()
+    return ext_lang
+
+ext_lang = setupLangs()
 
 __all__ = ['C', 'CXX', 'Java', 'Python', 'Racket', 'Unknown', 'ext_lang']

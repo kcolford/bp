@@ -15,8 +15,8 @@
 # You should have received a copy of the GNU General Public License
 # along with txt2boil.  If not, see <http://www.gnu.org/licenses/>.
 
-from core import *
-import cmi
+from .core import *
+from . import cmi
 
 
 class LineCodeGen(Gen):
