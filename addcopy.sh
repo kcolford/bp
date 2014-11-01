@@ -1,10 +1,18 @@
 #!/bin/bash
 
-gpl=$(< gpl_declaration.py)
+# Copyright (C) 2014 Kieran Colford
+
+# Copying and distribution of this file, with or without modification,
+# are permitted in any medium without royalty provided the copyright
+# notice and this notice are preserved.  This file is offered as-is,
+# without any warranty.
+
+
+#gpl=$(< gpl_declaration.py)
 for f in `git ls-files '*.py'`
 do
     case "$(< $f)" in
-	*$gpl*)			# GPL already there, do nothing
+	*'# Copyright'*)	# License already there, do nothing
 	    ;;
 	'#!'*)			# Preserve the sh-bang line
 	    { 
