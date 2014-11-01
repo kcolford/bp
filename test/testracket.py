@@ -15,20 +15,8 @@
 # You should have received a copy of the GNU General Public License
 # along with txt2boil.  If not, see <http://www.gnu.org/licenses/>.
 
-"""Test the languages that are provided.
-
-"""
-
-
-from unittest import TestCase
-from txt2boil.langs import Racket, Python
-
-
-class TestGen(TestCase):
-
-    def checkGenerates(self, src, out):
-        self.assertMultiLineEqual(out, self.gen(src))
-        self.assertMultiLineEqual(out, self.gen(out))
+from .testgen import TestGen
+from txt2boil.langs import Racket
 
 
 class RacketConstantTester(TestGen, Racket):
@@ -110,27 +98,3 @@ r5/7
 
     def testLineGen(self):
         self.checkGenerates(self.lineGenTest, self.lineGenAnswer)
-
-
-class PythonTester(Python, TestGen):
-
-    basicTest = r"""
-# Line Gen:
-# g(\d+)_(\d+)
-# \g<0> = divmod(\1, \2)
-
-print g9_7
-"""
-
-    basicAnswer = r"""
-# Line Gen:
-# g(\d+)_(\d+)
-# \g<0> = divmod(\1, \2)
-g9_7 = divmod(9, 7)
-
-print g9_7
-"""
-
-    def testBasic(self):
-        self.checkGenerates(self.basicTest, self.basicAnswer)
-
