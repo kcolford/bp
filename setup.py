@@ -67,7 +67,7 @@ setup(
     url='https://github.com/kcolford/txt2boil',
     download_url='',            # TODO
 
-    packages=find_packages(),
+    packages=find_packages(exclude=['test*', '*.test', '*.tests']),
     test_suite='test',
     entry_points={'console_scripts':['txt2boil = txt2boil.main:main']},
 
@@ -82,6 +82,8 @@ setup(
         'Operating System :: OS Independent',
         'Natural Language :: English',
         'Programming Language :: Python',
+        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 3',
         'Topic :: Software Development :: Code Generators',
     ],
 
