@@ -94,21 +94,6 @@ class Java(CXX):
     ext = ['.java']
 
 
-def setupLangs():
-    """Return a dictionary that maps file extensions to languages.
-
-    """
-
-    ext_lang = collections.defaultdict(Unknown)
-    for cls in globals().values():
-        if not isinstance(cls, type): continue 
-        if not issubclass(cls, comments.Comments): continue
-        
-        for ext in cls.__doc__.split():
-            ext_lang[ext] = cls()
-            ext_lang[ext.strip('.')] = cls()
-    return ext_lang
-
-ext_lang = setupLangs()
-
-__all__ = ['C', 'CXX', 'Java', 'Python', 'Racket', 'Unknown', 'ext_lang']
+# Export all the classes with an ext field in them.  This is how we
+# denote language classes from all other kinds of classes.
+__all__ = [nm for (nm, cls) in globals().items() if hasattr(cls, 'ext')]
