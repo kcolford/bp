@@ -32,16 +32,16 @@ import collections
 
 class Unknown(GenericGen):
     
-    """default"""
+    """The default "unknown" language."""
 
-    pass
+    ext = ['']
 
 
 class Python(comments.Shell, GenericGen):
 
-    """.py"""
+    """The Python language."""
 
-    pass
+    ext = ['.py']
 
 
 class _RacketConstantGen(GenericGen):
@@ -58,30 +58,40 @@ class _RacketConstantGen(GenericGen):
 
 class Racket(_RacketConstantGen, comments.Lisp, GenericGen):
 
-    """.rkt"""
+    """The Racket language.
 
-    pass
+    Racket was the language that originally inspired this project as
+    it was the language of choice for my university professors.
+
+    """
+
+    ext = ['.rkt']
 
 
 class C(comments.C, GenericGen):
 
-    """.c .h"""
+    """The C language, without the // line comments."""
 
-    pass
+    ext = '.c .h'.split()
 
 
 class CXX(comments.CXX, GenericGen):
 
-    """.cc .cpp .hh .hpp"""
+    """The C++ language, including both block and line comments."""
 
-    pass
+    ext = '.cc .cpp .hh .hpp'.split()
 
 
 class Java(CXX):
 
-    """.java"""
+    """Oracle's Java programming language.
+    
+    It currently extends the C++ language as there are no
+    specializations for it yet.
 
-    pass
+    """
+
+    ext = ['.java']
 
 
 def setupLangs():
