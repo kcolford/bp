@@ -32,3 +32,25 @@ Further support can be added be simply adding classes to the langs
 module.
 
 """
+
+import os
+import collections
+
+
+def language(fname):
+    """Return the language class that fname is suited for.
+
+    Searches through the module langs for the class that matches up
+    with fname.
+
+    """
+
+    from . import langs
+    for nm in langs.__all__:
+        assert hasattr(langs, nm)
+        cls = getattr(langs, nm)
+        assert hasattr(cls, 'ext')
+        for e in cls.ext:
+            if fname.endswith(e):
+                return cls
+    return langs.Unknown

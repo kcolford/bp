@@ -34,7 +34,7 @@ class Unknown(GenericGen):
     
     """The default "unknown" language."""
 
-    ext = ['']
+    pass
 
 
 class Python(comments.Shell, GenericGen):
