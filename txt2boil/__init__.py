@@ -26,6 +26,9 @@ Currently only the following are explicitly supported but the
 framework allows for more languages to be added easily.
 
 Supported Languages:
+- C
+- C++
+- Java
 - Python
 - Racket
 
