@@ -19,7 +19,7 @@ Options:
 }
 
 versionfile="txt2boil/version.py"
-verid=`git branch | sed 's/\* release\/\(.*\)/\1/;t;d'`
+verid=`git branch | sed 's/\* \(release\|hotfix\)\/\(.*\)/\2/;t;d'`
 
 for opt in "$@"
 do
