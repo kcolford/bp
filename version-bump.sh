@@ -47,6 +47,11 @@ do
     esac
 done
 
+if [ x$verid = x ]; then
+    echo "Error: no version-id available"
+    help
+fi
+
 update > $versionfile
 git add $versionfile
 git commit -m "Bumped version number to $verid" $versionfile
