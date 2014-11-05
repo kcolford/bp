@@ -65,7 +65,7 @@ def main(argv=sys.argv[1:]):
         for cls in sorted({getattr(langs, nm) for nm in langs.__all__}):
             l = cls.__name__
             out = cls.__doc__.split('\n\n')[0]
-            out = out + ' (' + ', '.join(cls.ext) ')'
+            out = out + ' (' + ', '.join(cls.ext) + ')'
 
             prefix2 = ' '.join([''] * 20)
             prefix1 = prefix2[:2] + l + prefix2[2+len(l):]
