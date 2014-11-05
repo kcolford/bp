@@ -7,6 +7,7 @@
 # notice and this notice are preserved.  This file is offered as-is,
 # without any warranty.
 
+# Print out help message.
 help() {
     echo "usage: $0 [<version-id>]
 Bump the version number to version-id.  If not specified then get the
@@ -14,8 +15,17 @@ version-id from git-flow.
 
 Options:
   -h, --help       print this help message and exit
-"
+
+Note that the version bump script can only figure out the version
+during a hotfix or a release.  At any other time you have to supply
+the version-id manually."
+
     exit 0
+}
+
+# Function to print out the code for the new version file.
+update() {
+    echo "version = '$verid'"
 }
 
 versionfile="txt2boil/version.py"
@@ -37,6 +47,6 @@ do
     esac
 done
 
-echo "version = '$verid'" > $versionfile
+update > $versionfile
 git add $versionfile
 git commit -m "Bumped version number to $verid" $versionfile
