@@ -19,7 +19,8 @@
 
 This package processes contains all the interfaces for generating
 boilerplate for a specific language.  Each language is implemented in
-the langs module.
+the langs module and is exposed via the toplevel function defined here
+called ``language``.
 
 Currently only the following are explicitly supported but the
 framework allows for more languages to be added easily.
@@ -41,7 +42,8 @@ def language(fname, is_forced=False):
     """Return the language class that fname is suited for.
 
     Searches through the module langs for the class that matches up
-    with fname.
+    with fname.  If is_forced is True then fname will be taken to be
+    the extension for a language.
 
     """
 
