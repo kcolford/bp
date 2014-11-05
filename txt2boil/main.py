@@ -32,7 +32,7 @@ import collections
 import sys
 import textwrap
 import os
-from . import langs
+from . import language
 from .version import version
 
 
@@ -85,10 +85,10 @@ def main(argv=sys.argv[1:]):
 
         # generate the new output according to the language
         if args.lang == 'auto':
-            _, ext = os.path.splitext(fname)
+            l = language(fname)
         else:
-            ext = args.lang
-        text = ext_lang[ext].gen(text)
+            l = language(args.lang, True)
+        text = l.gen(text)
 
         # emit the output
         if args.in_place:

@@ -37,7 +37,7 @@ import os
 import collections
 
 
-def language(fname):
+def language(fname, is_forced=False):
     """Return the language class that fname is suited for.
 
     Searches through the module langs for the class that matches up
@@ -50,7 +50,14 @@ def language(fname):
         assert hasattr(langs, nm)
         cls = getattr(langs, nm)
         assert hasattr(cls, 'ext')
+
         for e in cls.ext:
-            if fname.endswith(e):
-                return cls
+            if is_forced:
+                if fname.startswith('.'):
+                    fname = fname.strip('.')
+                if '.' + fname == e:
+                    return cls
+            else:
+                if fname.endswith(e):
+                    return cls
     return langs.Unknown
