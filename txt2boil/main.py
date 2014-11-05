@@ -32,6 +32,7 @@ import collections
 import sys
 import textwrap
 import os
+from . import langs
 from . import language
 from .version import version
 
@@ -61,9 +62,10 @@ def main(argv=sys.argv[1:]):
         sys.stdout.write(textwrap.fill(textwrap.dedent("""\
         The following languages are supported:
         """)) + '\n')
-        for cls in sorted({c.__class__ for c in langs.ext_lang.values()}):
+        for cls in sorted({getattr(langs, nm) for nm in langs.__all__}):
             l = cls.__name__
-            out = cls.__doc__
+            out = cls.__doc__.split('\n\n')[0]
+            out = out + ' (' + ', '.join(cls.ext) ')'
 
             prefix2 = ' '.join([''] * 20)
             prefix1 = prefix2[:2] + l + prefix2[2+len(l):]
