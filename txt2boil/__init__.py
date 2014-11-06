@@ -19,12 +19,16 @@
 
 This package processes contains all the interfaces for generating
 boilerplate for a specific language.  Each language is implemented in
-the langs module.
+the langs module and is exposed via the toplevel function defined here
+called ``language``.
 
 Currently only the following are explicitly supported but the
 framework allows for more languages to be added easily.
 
 Supported Languages:
+- C
+- C++
+- Java
 - Python
 - Racket
 
@@ -32,3 +36,33 @@ Further support can be added be simply adding classes to the langs
 module.
 
 """
+
+import os
+import collections
+
+
+def language(fname, is_forced=False):
+    """Return the language class that fname is suited for.
+
+    Searches through the module langs for the class that matches up
+    with fname.  If is_forced is True then fname will be taken to be
+    the extension for a language.
+
+    """
+
+    from . import langs
+    for nm in langs.__all__:
+        assert hasattr(langs, nm)
+        cls = getattr(langs, nm)
+        assert hasattr(cls, 'ext')
+
+        for e in cls.ext:
+            if is_forced:
+                if fname.startswith('.'):
+                    fname = fname.strip('.')
+                if '.' + fname == e:
+                    return cls
+            else:
+                if fname.endswith(e):
+                    return cls
+    return langs.Unknown

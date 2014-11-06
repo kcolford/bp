@@ -32,16 +32,16 @@ import collections
 
 class Unknown(GenericGen):
     
-    """default"""
+    """The default "unknown" language."""
 
     pass
 
 
 class Python(comments.Shell, GenericGen):
 
-    """.py"""
+    """The Python language."""
 
-    pass
+    ext = ['.py']
 
 
 class _RacketConstantGen(GenericGen):
@@ -58,47 +58,42 @@ class _RacketConstantGen(GenericGen):
 
 class Racket(_RacketConstantGen, comments.Lisp, GenericGen):
 
-    """.rkt"""
+    """The Racket language.
 
-    pass
+    Racket was the language that originally inspired this project as
+    it was the language of choice for my university professors.
+
+    """
+
+    ext = ['.rkt']
 
 
 class C(comments.C, GenericGen):
 
-    """.c .h"""
+    """The C language, without the // line comments."""
 
-    pass
+    ext = '.c .h'.split()
 
 
 class CXX(comments.CXX, GenericGen):
 
-    """.cc .cpp .hh .hpp"""
+    """The C++ language, including both block and line comments."""
 
-    pass
+    ext = '.cc .cpp .hh .hpp'.split()
 
 
 class Java(CXX):
 
-    """.java"""
-
-    pass
-
-
-def setupLangs():
-    """Return a dictionary that maps file extensions to languages.
+    """Oracle's Java programming language.
+    
+    It currently extends the C++ language as there are no
+    specializations for it yet.
 
     """
 
-    ext_lang = collections.defaultdict(Unknown)
-    for cls in globals().values():
-        if not isinstance(cls, type): continue 
-        if not issubclass(cls, comments.Comments): continue
-        
-        for ext in cls.__doc__.split():
-            ext_lang[ext] = cls()
-            ext_lang[ext.strip('.')] = cls()
-    return ext_lang
+    ext = ['.java']
 
-ext_lang = setupLangs()
 
-__all__ = ['C', 'CXX', 'Java', 'Python', 'Racket', 'Unknown', 'ext_lang']
+# Export all the classes with an ext field in them.  This is how we
+# denote language classes from all other kinds of classes.
+__all__ = [nm for (nm, cls) in globals().items() if hasattr(cls, 'ext')]
