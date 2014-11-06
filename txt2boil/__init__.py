@@ -26,11 +26,7 @@ Currently only the following are explicitly supported but the
 framework allows for more languages to be added easily.
 
 Supported Languages:
-- C
-- C++
-- Java
-- Python
-- Racket
+{}
 
 Further support can be added be simply adding classes to the langs
 module.
@@ -39,9 +35,11 @@ module.
 
 import os
 import collections
+from . import langs
+from . import version
 
 
-def language(fname, is_forced=False):
+def language(fname, is_ext=False):
     """Return the language class that fname is suited for.
 
     Searches through the module langs for the class that matches up
@@ -50,19 +48,21 @@ def language(fname, is_forced=False):
 
     """
 
-    from . import langs
-    for nm in langs.__all__:
-        assert hasattr(langs, nm)
-        cls = getattr(langs, nm)
-        assert hasattr(cls, 'ext')
+    global _langmapping
 
-        for e in cls.ext:
-            if is_forced:
-                if fname.startswith('.'):
-                    fname = fname.strip('.')
-                if '.' + fname == e:
-                    return cls
-            else:
-                if fname.endswith(e):
-                    return cls
-    return langs.Unknown
+    # Normalize the fname so that it looks like an extension.
+    if is_ext:
+        fname = '.' + fname
+    _, ext = os.path.splitext(fname)
+
+    return _langmapping[ext]
+
+
+_langmapping = collections.defaultdict(langs.Unknown)
+_langmapping.update({e.strip():getattr(langs, nm)
+                     for nm in langs.__all__
+                     for e in getattr(langs, nm).ext})
+
+__doc__ = __doc__.format('\n'.join(map('- {}'.format, langs.__all__)))
+__version__ = version.version
+__all__ = ['language']
