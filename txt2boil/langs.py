@@ -20,6 +20,14 @@
 Each class is designed for a particular language and inherits its
 features from different parent classes.
 
+A language class is defined to be a class in the global scope of this
+module and has a class level ext field.  The ext field must be a list
+of file name extensions.  Thus, all language classes will be exported
+by this module and registered in the __all__ list.  So to import all
+languages it is safe to use::
+
+    from langs import *
+
 """
 
 
