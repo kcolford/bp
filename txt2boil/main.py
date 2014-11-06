@@ -8,12 +8,12 @@
 # under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-# 
+#
 # txt2boil is distributed in the hope that it will be useful, but
 # WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 # General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with txt2boil.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -68,11 +68,11 @@ def main(argv=sys.argv[1:]):
             out = out + ' (' + ', '.join(cls.ext) + ')'
 
             prefix2 = ' '.join([''] * 20)
-            prefix1 = prefix2[:2] + l + prefix2[2+len(l):]
+            prefix1 = prefix2[:2] + l + prefix2[2 + len(l):]
 
             wrapped = textwrap.fill(out, initial_indent=prefix1,
                                     subsequent_indent=prefix2)
-            
+
             sys.stdout.write(wrapped + '\n')
 
         parser.exit(0)          # Exit once we're done

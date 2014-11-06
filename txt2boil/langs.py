@@ -6,12 +6,12 @@
 # under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-# 
+#
 # txt2boil is distributed in the hope that it will be useful, but
 # WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 # General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with txt2boil.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -39,7 +39,7 @@ import collections
 
 
 class Unknown(GenericGen):
-    
+
     """The default "unknown" language."""
 
     pass
@@ -61,7 +61,7 @@ class _RacketConstantGen(GenericGen):
     @cmi.nonNoneCMI(lambda: _RacketConstantGen)
     def matchComment(self, comm):
         return HookedRegex(r'Constant Gen: (\S+) (.*)\n',
-                            '(define \g<0> {})\n', comm)
+                           '(define \g<0> {})\n', comm)
 
 
 class Racket(_RacketConstantGen, comments.Lisp, GenericGen):
@@ -93,7 +93,7 @@ class CXX(comments.CXX, GenericGen):
 class Java(CXX):
 
     """Oracle's Java programming language.
-    
+
     It currently extends the C++ language as there are no
     specializations for it yet.
 

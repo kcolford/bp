@@ -8,12 +8,12 @@
 # under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-# 
+#
 # txt2boil is distributed in the hope that it will be useful, but
 # WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 # General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with txt2boil.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -36,7 +36,7 @@ class total_upload(Command):
     def finalize_options(self):
         pass
 
-    commands = ['register', 
+    commands = ['register',
                 'sdist',
                 'bdist_rpm',
                 'bdist_msi', 'bdist_msi_fixed',
@@ -69,7 +69,7 @@ setup(
 
     packages=find_packages(exclude=['test*', '*.test', '*.tests']),
     test_suite='test',
-    entry_points={'console_scripts':['txt2boil = txt2boil.main:main']},
+    entry_points={'console_scripts': ['txt2boil = txt2boil.main:main']},
 
     platforms=['Any'],
 
@@ -89,7 +89,7 @@ setup(
 
     use_2to3=True,
 
-    cmdclass={'total_upload':total_upload},
+    cmdclass={'total_upload': total_upload},
 
     setup_requires=['xdistutils'],
 )
