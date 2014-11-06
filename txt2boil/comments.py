@@ -77,7 +77,7 @@ class CXX(C):
 
 
 class TeX(Comments):
-    
+
     """The comment style used in dialects of TeX."""
 
     __regex = re.compile(r'^%+ (.*)', re.M)
