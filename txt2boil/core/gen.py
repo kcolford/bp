@@ -6,12 +6,12 @@
 # under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-# 
+#
 # txt2boil is distributed in the hope that it will be useful, but
 # WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 # General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with txt2boil.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -75,7 +75,7 @@ class _Gen(Extractor):
 
 
 class Gen(_Gen):
-    
+
     """The generator class for boilerplate code.
 
     """
@@ -88,7 +88,7 @@ class Gen(_Gen):
         overload should make use of the coop.nonNoneCMI function
         decorator so that multiple different comments can be processes
         with one class.
-        
+
         For example, if one were to write a Foo generator then it
         would look something like this:
 
