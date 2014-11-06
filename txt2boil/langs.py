@@ -102,6 +102,13 @@ class Java(CXX):
     ext = ['.java']
 
 
+class LaTeX(comments.Tex, GenericGen):
+
+    """The LaTeX typesetting language."""
+
+    ext = '.tex .sty .cls'.split()
+
+
 # Export all the classes with an ext field in them.  This is how we
 # denote language classes from all other kinds of classes.
 __all__ = [nm for (nm, cls) in globals().items() if hasattr(cls, 'ext')]
