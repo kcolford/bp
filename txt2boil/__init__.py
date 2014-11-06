@@ -59,7 +59,7 @@ def language(fname, is_ext=False):
 
 
 _langmapping = collections.defaultdict(langs.Unknown)
-_langmapping.update({e.strip():getattr(langs, nm)
+_langmapping.update({e.strip(): getattr(langs, nm)
                      for nm in langs.__all__
                      for e in getattr(langs, nm).ext})
 
