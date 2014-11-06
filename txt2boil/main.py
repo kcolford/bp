@@ -34,7 +34,7 @@ import textwrap
 import os
 from . import langs
 from . import language
-from .version import version
+from . import __version__ as version
 
 
 def main(argv=sys.argv[1:]):

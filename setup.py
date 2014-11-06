@@ -22,7 +22,7 @@ from setuptools import *
 from distutils.errors import DistutilsError
 import os
 import glob
-from txt2boil.version import version
+from txt2boil import __version__ as version
 
 
 class total_upload(Command):
