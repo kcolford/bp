@@ -53,5 +53,6 @@ if [ x$verid = x ]; then
 fi
 
 update > $versionfile
+./addcopy.sh
 git add $versionfile
 git commit -m "Bumped version number to $verid" $versionfile
