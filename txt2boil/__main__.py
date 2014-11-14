@@ -1,5 +1,3 @@
-#!/usr/bin/python
-
 # Copyright (C) 2014 Kieran Colford
 #
 # This file is part of txt2boil.
