@@ -70,7 +70,7 @@ class CXX(C):
 
     """
 
-    __regex = re.compile(r'^//+ (.*)', re.M)
+    __regex = re.compile(r'^//+ (.*\n)', re.M)
 
     def lineComment(self, text, start):
         return self.__regex.search(text, start)
@@ -80,7 +80,7 @@ class TeX(Comments):
 
     """The comment style used in dialects of TeX."""
 
-    __regex = re.compile(r'^%+ (.*)', re.M)
+    __regex = re.compile(r'^%+ (.*\n)', re.M)
 
     def lineComment(self, text, start):
         return self.__regex.search(text, start)
