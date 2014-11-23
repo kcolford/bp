@@ -39,11 +39,11 @@ from . import langs
 from . import version
 
 
-def language(fname, is_ext=False):
+def language_class(fname, is_ext=False):
     """Return the language class that fname is suited for.
 
     Searches through the module langs for the class that matches up
-    with fname.  If is_forced is True then fname will be taken to be
+    with fname.  If is_ext is True then fname will be taken to be
     the extension for a language.
 
     """
@@ -58,6 +58,15 @@ def language(fname, is_ext=False):
     return _langmapping[ext]
 
 
+def language(fname, is_ext=False):
+    """Return an instance of the language class returned by
+    language_class.
+
+    """
+
+    return language_class(fname, is_ext)
+
+
 _langmapping = collections.defaultdict(langs.Unknown)
 _langmapping.update({e.strip(): getattr(langs, nm)
                      for nm in langs.__all__
@@ -65,4 +74,4 @@ _langmapping.update({e.strip(): getattr(langs, nm)
 
 __doc__ = __doc__.format('\n'.join(map('- {}'.format, langs.__all__)))
 __version__ = version.version
-__all__ = ['language']
+__all__ = ['language', 'language_class']
