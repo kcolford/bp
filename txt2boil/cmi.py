@@ -6,12 +6,12 @@
 # under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-# 
+#
 # txt2boil is distributed in the hope that it will be useful, but
 # WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 # General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with txt2boil.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -42,6 +42,7 @@ Otherwise the name Foo won't be defined yet.
 
 from functools import wraps
 
+
 class AbstractCMI:
 
     """A descriptor that enables easy CMI according to a function.
@@ -58,7 +59,7 @@ class AbstractCMI:
         Note that cls has to be wrapped in a lambda because otherwise
         there will be a name resolution error (since that class hasn't
         been defined yet).
-        
+
         cls   - the current class wrapped in a lambda
         merge - the binary operator that will determine the final
                 result
@@ -88,6 +89,7 @@ def minCMI(cls):
     """Return an AbstractCMI that locates the minimum element."""
 
     return AbstractCMI(cls, min)
+
 
 def nonNoneCMI(cls):
     """Return an AbstractCMI that locates the first non-None element."""
