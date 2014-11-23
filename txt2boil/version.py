@@ -14,4 +14,5 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with txt2boil.  If not, see <http://www.gnu.org/licenses/>.
-version = '0.6.2'
+
+version = '0.7'
