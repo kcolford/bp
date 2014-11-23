@@ -39,7 +39,7 @@ from . import langs
 from . import version
 
 
-def language_class(fname, is_ext=False):
+def language(fname, is_ext=False):
     """Return an instance of the language class that fname is suited for.
 
     Searches through the module langs for the class that matches up
